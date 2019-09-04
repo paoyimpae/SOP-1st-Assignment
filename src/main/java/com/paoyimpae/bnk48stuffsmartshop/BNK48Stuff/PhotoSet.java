@@ -5,7 +5,7 @@ package com.paoyimpae.bnk48stuffsmartshop.BNK48Stuff;
 import java.util.ArrayList;
 import org.json.JSONObject;
 
-class PhotoSet {
+class PhotoSet implements DataManage {
 	/* Product type is BNK48 Photo Set */
 	private static String[] chooseAll = new String[] {
 		"BNK48 The Debut Photoset",

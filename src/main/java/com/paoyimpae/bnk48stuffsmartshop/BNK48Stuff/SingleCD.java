@@ -5,7 +5,7 @@ package com.paoyimpae.bnk48stuffsmartshop.BNK48Stuff;
 import java.util.ArrayList;
 import org.json.JSONObject;
 
-class SingleCD {
+class SingleCD implements DataManage {
 	/* Product type is BNK48 Single CD */
 	private static String[] chooseAll = new String[] {
 		"BNK48 Aitakatta Single",

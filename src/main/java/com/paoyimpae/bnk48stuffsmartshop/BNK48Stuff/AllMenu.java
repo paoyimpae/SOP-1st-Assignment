@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import org.apache.tomcat.util.json.JSONParser;
 import org.json.*;
 
+interface DataManage {
+	/* Interface for each Product Type */
+	public String getList();
+	public String getListSelect(int order);
+}
+
 public class AllMenu {
 	/* Main System Class */
 	private static String[] chooseAll = new String[] {
