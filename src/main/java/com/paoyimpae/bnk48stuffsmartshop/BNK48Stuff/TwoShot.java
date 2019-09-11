@@ -5,7 +5,7 @@ package com.paoyimpae.bnk48stuffsmartshop.BNK48Stuff;
 import java.util.ArrayList;
 import org.json.JSONObject;
 
-class TwoShot implements DataManage {
+class TwoShot implements ProductType {
 	/* Product type is BNK48 2-Shot Card */
 	private static String[] chooseAll = new String[] {
 		"Cherprang BNK48", "Music BNK48", "Jennis BNK48", "Pun BNK48",

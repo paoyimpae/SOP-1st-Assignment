@@ -7,12 +7,6 @@ import java.util.ArrayList;
 import org.apache.tomcat.util.json.JSONParser;
 import org.json.*;
 
-interface DataManage {
-	/* Interface for each Product Type */
-	public String getList();
-	public String getListSelect(int order);
-}
-
 public class AllMenu {
 	/* Main System Class */
 	private static String[] chooseAll = new String[] {
@@ -20,10 +14,12 @@ public class AllMenu {
 	}; //List of Product Type Names
 	private ArrayList menuList = new ArrayList(); //List of JSON Objects
 	
+	private String customerName = "";
 	private int allPrice = 0; //Total Prices
-	private PhotoSet ps = new PhotoSet(); //Create BNK48 Photo Set Object
-	private SingleCD sc = new SingleCD(); //Create BNK48 Single CD Object
-	private TwoShot ts = new TwoShot(); //Create BNK48 2-Shot Card Object
+	private ProductTypeFactory productTypes = new ProductTypeFactory();
+	private ProductType ps = productTypes.getProductType("PHOTOSET"); //Create BNK48 Photo Set Object
+	private ProductType sc = productTypes.getProductType("SINGLECD"); //Create BNK48 Single CD Object
+	private ProductType ts = productTypes.getProductType("TWOSHOT"); //Create BNK48 2-Shot Card Object
 	private ArrayList choose = new ArrayList(); //List of cart
 	
 	AllMenu() {
@@ -127,9 +123,14 @@ public class AllMenu {
 	}
 
 	public String getCart() {
-		/* Getter for showing goods list in cart */
+		/* Getter for showing goods list in cart (String) */
 		if (choose.isEmpty()) return "🛒 You cart is empty ! 😢";
 		else return choose.toString();
+	}
+	
+	public ArrayList getCartList() {
+		/* Getter for showing goods list in cart */
+		return choose;
 	}
 
 	public int getValue() {
@@ -152,6 +153,27 @@ public class AllMenu {
 	public void resetValue() {
 		/* Setter for resetting value after payment was success */
 		choose.clear();
-		this.allPrice = 0;
+		this.setCustomerName("");
+		this.setAllPrice(0);
+	}
+
+	public void setCustomerName(String customerName) {
+		/* Setter for Customer Name */
+		this.customerName = customerName;
+	}
+
+	public String getCustomerName() {
+		/* Getter for Customer Name */
+		return this.customerName;
+	}
+	
+	public void setAllPrice(int allPrice) {
+		/* Setter for Total Price */
+		this.allPrice = allPrice;
+	}
+	
+	public int getAllPrice() {
+		/* Getter for Total Price */
+		return this.allPrice;
 	}
 }

@@ -27,10 +27,19 @@ public class SpringBootFunction {
 		SpringApplication.run(SpringBootFunction.class, args);
 	}
 	
-	/* Main page (with P'Cherprang picture) */
+	/* Main page */
 	@RequestMapping("/")
 	String home() {
-		return "<img src=\"https://i.pinimg.com/originals/67/e4/88/67e488c35fab150a57180c2012208874.gif\"><br>🙏 Welcome to BNK48 Stuff Smart Shop By Paoyimpae ✅";
+		/* [Teacher Commented] HTML is gone ! */
+		cust.setCustomerName("Unknown Name");
+		return "🙏 Welcome " + cust.getCustomerName() + " to BNK48 Stuff Smart Shop By Paoyimpae ✅";
+	}
+	
+	/* Main page */
+	@RequestMapping("/{userName}")
+	String home(@PathVariable String userName) {
+		cust.setCustomerName(userName);
+		return "🙏 Welcome " + cust.getCustomerName() + " to BNK48 Stuff Smart Shop By Paoyimpae ✅";
 	}
 	
 	/* Show product type list (List of JSON) */
@@ -77,12 +86,25 @@ public class SpringBootFunction {
 	*/
 	@RequestMapping(value = "/Sayonara")
 	String calculate() {
+		int amount = cust.getCartList().size();
 		int cost = cust.getValue();
+		String name = cust.getCustomerName();
 		cust.resetValue();
-		if (cost == 0) { return "✅ Thank you for your attention in my shop 🙏"; }
+		if (cost == 0) { return "✅ Thank you " + name + ", for your attention in my shop 🙏"; }
 		else {
+			FileManager instance = new FileManager().getInstance();
+			instance.WriteLog(name, amount, cost);
 			return "🎉 Total Price : " + cost + " Baht 💵\n"
-					+ "✅ Thank you for your attention in my shop 🙏";
+					+ "✅ Thank you " + name + ", for your attention in my shop 🙏";
 		}
+	}
+	
+	/* Show History Log of Service */
+	@RequestMapping(value = "/ShowLog")
+	String showLog() {
+		FileManager instance = new FileManager().getInstance();
+		instance.ReadLog();
+		String log = instance.getLogString();
+		return log;
 	}
 }
