@@ -14,7 +14,7 @@ public class AllMenu {
 	}; //List of Product Type Names
 	private ArrayList menuList = new ArrayList(); //List of JSON Objects
 	
-	private String customerName = "";
+	private String customerName = "Unknown Name";
 	private int allPrice = 0; //Total Prices
 	private ProductTypeFactory productTypes = new ProductTypeFactory();
 	private ProductType ps = productTypes.getProductType("PHOTOSET"); //Create BNK48 Photo Set Object
@@ -153,7 +153,7 @@ public class AllMenu {
 	public void resetValue() {
 		/* Setter for resetting value after payment was success */
 		choose.clear();
-		this.setCustomerName("");
+		this.setCustomerName("Unknown Name");
 		this.setAllPrice(0);
 	}
 
