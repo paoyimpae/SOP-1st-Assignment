@@ -35,7 +35,7 @@ public class SpringBootFunction {
 		return "🙏 Welcome " + cust.getCustomerName() + " to BNK48 Stuff Smart Shop By Paoyimpae ✅";
 	}
 	
-	/* Main page */
+	/* Main page with Username */
 	@RequestMapping("/{userName}")
 	String home(@PathVariable String userName) {
 		cust.setCustomerName(userName);
