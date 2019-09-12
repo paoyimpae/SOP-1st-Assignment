@@ -21,7 +21,9 @@ import javax.swing.ImageIcon;
 
 public class SpringBootFunction {
 	/* Create AllMenu object (as create customer) */
+	
 	AllMenu cust = new AllMenu();
+	FileManager instance = new FileManager().getInstance();
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootFunction.class, args);
@@ -92,7 +94,6 @@ public class SpringBootFunction {
 		cust.resetValue();
 		if (cost == 0) { return "✅ Thank you " + name + ", for your attention in my shop 🙏"; }
 		else {
-			FileManager instance = new FileManager().getInstance();
 			instance.WriteLog(name, amount, cost);
 			return "🎉 Total Price : " + cost + " Baht 💵\n"
 					+ "✅ Thank you " + name + ", for your attention in my shop 🙏";
@@ -102,7 +103,7 @@ public class SpringBootFunction {
 	/* Show History Log of Service */
 	@RequestMapping(value = "/ShowLog")
 	String showLog() {
-		FileManager instance = new FileManager().getInstance();
+		
 		instance.ReadLog();
 		String log = instance.getLogString();
 		return log;
